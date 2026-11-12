@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification Toolbox — BCC Basic Needs Center</title>
+  <meta name="description" content="Independent verification portals and anti-fraud triage hub for Berkeley City College students.">
+  
+  <!-- Load Inter Font for Clean Editorial Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          colors: {
+            canvas: '#FAF9F6',
+            surface: '#FFFFFF',
+            ink: '#111111',
+            muted: '#555555',
+            subtle: '#767676',
+            hairline: '#E5E5E0',
+            hairlineHover: '#111111',
+            sageBg: '#F2F5F1',
+            sageBorder: '#D8E2D5',
+            sageText: '#2A4B2C',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* High-craft native CSS transitions optimized for low-spec devices */
+    body {
+      background-color: #FAF9F6;
+      color: #111111;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .capsule-card {
+      background-color: #FFFFFF;
+      border: 1px solid #E5E5E0;
+      border-radius: 24px;
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.18s ease,
+                  box-shadow 0.18s ease;
+    }
+
+    .capsule-card:hover,
+    .capsule-card:focus-visible {
+      transform: translateY(-2px);
+      border-color: #111111;
+      box-shadow: 0 8px 24px -8px rgba(17, 17, 17, 0.08);
+      outline: none;
+    }
+
+    .capsule-card:active {
+      transform: translateY(0px);
+    }
+
+    .capsule-arrow {
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), color 0.18s ease;
+    }
+
+    .capsule-card:hover .capsule-arrow {
+      transform: translate(2px, -2px);
+      color: #111111;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-[#111111] selection:text-[#FAF9F6]">
+
+  <!-- Main Narrow Reading Column -->
+  <main class="w-full max-w-[640px] mx-auto px-5 pt-12 pb-16 sm:pt-20 sm:pb-24">
+    
+    <!-- Editorial Header -->
+    <header class="mb-10 sm:mb-12">
+      <!-- Top Identity Pill Badge -->
+      <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white border border-hairline text-[11px] font-semibold tracking-[0.08em] uppercase text-muted mb-6 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+        BCC BASIC NEEDS CENTER &bull; DIGITAL SAFETY HUB
+      </div>
+
+      <!-- Crisp Page Title -->
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-[-0.025em] text-ink mb-4 leading-[1.15]">
+        Verification Toolbox
+      </h1>
+
+      <!-- Golden Rule Subhead -->
+      <p class="text-[15px] sm:text-base text-muted leading-[1.6] font-normal">
+        Never verify through a link or phone number sent to you. Use these official portals to independently audit your accounts.
+      </p>
+    </header>
+
+    <!-- Vertical Stack of Pill-Shaped Action Capsules -->
+    <section aria-label="Official Verification Portals" class="flex flex-col gap-3.5 sm:gap-4 mb-10">
+      
+      <!-- Capsule 1: PG&E Safe Portal -->
+      <a href="https://www.pge.com/myhome" target="_blank" rel="noopener noreferrer" class="capsule-card group block p-4 sm:p-5">
+        <div class="flex items-start gap-3.5 sm:gap-4">
+          <!-- Left Icon -->
+          <div class="w-11 h-11 rounded-full bg-[#FAF9F6] border border-hairline flex items-center justify-center text-lg shrink-0 mt-0.5" aria-hidden="true">
+            &#9889;
+          </div>
+          
+          <!-- Middle Content -->
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <h2 class="text-[15px] sm:text-base font-semibold text-ink tracking-[-0.01em]">
+                PG&amp;E Safe Portal
+              </h2>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#FAF9F6] text-muted border border-hairline">
+                Official Utility
+              </span>
+              <span class="text-xs font-mono text-subtle hidden sm:inline">
+                pge.com/myhome
+              </span>
+            </div>
+            <p class="text-[13.5px] sm:text-[14px] text-muted leading-[1.55]">
+              Received an urgent shutoff call or text? Log in directly to verify your real bill status, formal 15-day/48-hour notices, or call 1-800-743-5000.
+            </p>
+          </div>
+
+          <!-- Right Arrow -->
+          <div class="capsule-arrow text-subtle text-lg font-medium shrink-0 pt-0.5 pl-1" aria-hidden="true">
+            &#8599;
+          </div>
+        </div>
+      </a>
+
+      <!-- Capsule 2: ebtEDGE Card Lock -->
+      <a href="https://www.ebtedge.com" target="_blank" rel="noopener noreferrer" class="capsule-card group block p-4 sm:p-5">
+        <div class="flex items-start gap-3.5 sm:gap-4">
+          <!-- Left Icon -->
+          <div class="w-11 h-11 rounded-full bg-[#FAF9F6] border border-hairline flex items-center justify-center text-lg shrink-0 mt-0.5" aria-hidden="true">
+            &#128274;
+          </div>
+          
+          <!-- Middle Content -->
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <h2 class="text-[15px] sm:text-base font-semibold text-ink tracking-[-0.01em]">
+                ebtEDGE Card Lock
+              </h2>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#FAF9F6] text-muted border border-hairline">
+                Immediate Freeze
+              </span>
+              <span class="text-xs font-mono text-subtle hidden sm:inline">
+                ebtedge.com
+              </span>
+            </div>
+            <p class="text-[13.5px] sm:text-[14px] text-muted leading-[1.55]">
+              Suspect EBT skimming or phishing? Freeze your card immediately, reset your 4-digit PIN, and review recent grocery transactions.
+            </p>
+          </div>
+
+          <!-- Right Arrow -->
+          <div class="capsule-arrow text-subtle text-lg font-medium shrink-0 pt-0.5 pl-1" aria-hidden="true">
+            &#8599;
+          </div>
+        </div>
+      </a>
+
+      <!-- Capsule 3: BenefitsCal Portal -->
+      <a href="https://benefitscal.com" target="_blank" rel="noopener noreferrer" class="capsule-card group block p-4 sm:p-5">
+        <div class="flex items-start gap-3.5 sm:gap-4">
+          <!-- Left Icon -->
+          <div class="w-11 h-11 rounded-full bg-[#FAF9F6] border border-hairline flex items-center justify-center text-lg shrink-0 mt-0.5" aria-hidden="true">
+            &#129367;
+          </div>
+          
+          <!-- Middle Content -->
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <h2 class="text-[15px] sm:text-base font-semibold text-ink tracking-[-0.01em]">
+                BenefitsCal Portal
+              </h2>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#FAF9F6] text-muted border border-hairline">
+                County / State
+              </span>
+              <span class="text-xs font-mono text-subtle hidden sm:inline">
+                benefitscal.com
+              </span>
+            </div>
+            <p class="text-[13.5px] sm:text-[14px] text-muted leading-[1.55]">
+              Check your official CalFresh eligibility, renewal notices, and county messages without clicking SMS links.
+            </p>
+          </div>
+
+          <!-- Right Arrow -->
+          <div class="capsule-arrow text-subtle text-lg font-medium shrink-0 pt-0.5 pl-1" aria-hidden="true">
+            &#8599;
+          </div>
+        </div>
+      </a>
+
+      <!-- Capsule 4: Phish & Link Radar -->
+      <a href="https://www.virustotal.com" target="_blank" rel="noopener noreferrer" class="capsule-card group block p-4 sm:p-5">
+        <div class="flex items-start gap-3.5 sm:gap-4">
+          <!-- Left Icon -->
+          <div class="w-11 h-11 rounded-full bg-[#FAF9F6] border border-hairline flex items-center justify-center text-lg shrink-0 mt-0.5" aria-hidden="true">
+            &#128269;
+          </div>
+          
+          <!-- Middle Content -->
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <h2 class="text-[15px] sm:text-base font-semibold text-ink tracking-[-0.01em]">
+                Phish &amp; Link Radar
+              </h2>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#FAF9F6] text-muted border border-hairline">
+                Link Scanner
+              </span>
+              <span class="text-xs font-mono text-subtle hidden sm:inline">
+                virustotal.com
+              </span>
+            </div>
+            <p class="text-[13.5px] sm:text-[14px] text-muted leading-[1.55]">
+              Paste any suspicious bit.ly or shortened text link here before tapping to scan for malware and fake login pages.
+            </p>
+          </div>
+
+          <!-- Right Arrow -->
+          <div class="capsule-arrow text-subtle text-lg font-medium shrink-0 pt-0.5 pl-1" aria-hidden="true">
+            &#8599;
+          </div>
+        </div>
+      </a>
+
+      <!-- Capsule 5: FTC Fraud & EBT Recovery -->
+      <a href="https://reportfraud.ftc.gov" target="_blank" rel="noopener noreferrer" class="capsule-card group block p-4 sm:p-5">
+        <div class="flex items-start gap-3.5 sm:gap-4">
+          <!-- Left Icon -->
+          <div class="w-11 h-11 rounded-full bg-[#FAF9F6] border border-hairline flex items-center justify-center text-lg shrink-0 mt-0.5" aria-hidden="true">
+            &#128737;&#65039;
+          </div>
+          
+          <!-- Middle Content -->
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <h2 class="text-[15px] sm:text-base font-semibold text-ink tracking-[-0.01em]">
+                FTC Fraud &amp; EBT Recovery
+              </h2>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#FAF9F6] text-muted border border-hairline">
+                Federal Report
+              </span>
+              <span class="text-xs font-mono text-subtle hidden sm:inline">
+                reportfraud.ftc.gov
+              </span>
+            </div>
+            <p class="text-[13.5px] sm:text-[14px] text-muted leading-[1.55]">
+              Document and report utility or benefit impersonation scams. (Note: For stolen CalFresh funds, also file Form EBT 2259 with Alameda County SSA within 10 days.)
+            </p>
+          </div>
+
+          <!-- Right Arrow -->
+          <div class="capsule-arrow text-subtle text-lg font-medium shrink-0 pt-0.5 pl-1" aria-hidden="true">
+            &#8599;
+          </div>
+        </div>
+      </a>
+
+      <!-- Capsule 6: CA Financial Protection -->
+      <a href="https://dfpi.ca.gov" target="_blank" rel="noopener noreferrer" class="capsule-card group block p-4 sm:p-5">
+        <div class="flex items-start gap-3.5 sm:gap-4">
+          <!-- Left Icon -->
+          <div class="w-11 h-11 rounded-full bg-[#FAF9F6] border border-hairline flex items-center justify-center text-lg shrink-0 mt-0.5" aria-hidden="true">
+            &#127963;&#65039;
+          </div>
+          
+          <!-- Middle Content -->
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <h2 class="text-[15px] sm:text-base font-semibold text-ink tracking-[-0.01em]">
+                CA Financial Protection
+              </h2>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#FAF9F6] text-muted border border-hairline">
+                CA State
+              </span>
+              <span class="text-xs font-mono text-subtle hidden sm:inline">
+                dfpi.ca.gov
+              </span>
+            </div>
+            <p class="text-[13.5px] sm:text-[14px] text-muted leading-[1.55]">
+              Verify whether a lender, debt collector, or financial service is legitimately licensed in California.
+            </p>
+          </div>
+
+          <!-- Right Arrow -->
+          <div class="capsule-arrow text-subtle text-lg font-medium shrink-0 pt-0.5 pl-1" aria-hidden="true">
+            &#8599;
+          </div>
+        </div>
+      </a>
+
+    </section>
+
+    <!-- Quick Red-Flag Reminder Callout Box -->
+    <aside aria-label="Quick Red-Flag Reminders" class="rounded-[22px] bg-sageBg border border-sageBorder p-5 sm:p-6 mb-12">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="inline-block w-2 h-2 rounded-full bg-sageText" aria-hidden="true"></span>
+        <h3 class="text-xs font-bold uppercase tracking-[0.07em] text-sageText">
+          3 Golden Rules &bull; Quick Red-Flag Check
+        </h3>
+      </div>
+      <ul class="space-y-2.5 text-[13.5px] sm:text-[14px] text-ink/90 leading-[1.55]">
+        <li class="flex items-start gap-2.5">
+          <span class="text-sageText font-semibold select-none">&bull;</span>
+          <span><strong>No Gift Cards or P2P Apps:</strong> Official agencies and utilities never demand Zelle, Venmo, or retail gift cards.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <span class="text-sageText font-semibold select-none">&bull;</span>
+          <span><strong>Never Share Your PIN via Text:</strong> County offices will never text you asking for your 4-digit EBT PIN or full card number.</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <span class="text-sageText font-semibold select-none">&bull;</span>
+          <span><strong>Written Notices Come First:</strong> Legitimate utility shutoffs require advance mailed postal notices, never 45-minute phone ultimatums.</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Minimalist Editorial Footer -->
+    <footer class="pt-6 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-subtle">
+      <p class="leading-relaxed">
+        Vol. 1: Student Consumer Protection Series &bull; Built for Berkeley City College Students
+      </p>
+      
+      <button
+        id="copyLinkBtn"
+        type="button"
+        onclick="copyPageUrl()"
+        class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-hairline text-ink font-medium hover:border-ink transition-colors shrink-0 cursor-pointer"
+      >
+        <span id="copyBtnIcon">&#128279;</span>
+        <span id="copyBtnText">Share Toolbox</span>
+      </button>
+    </footer>
+
+  </main>
+
+  <!-- Lightweight Copy-to-Clipboard Script (Iframe & Mobile Safe) -->
+  <script>
+    function copyPageUrl() {
+      const btnText = document.getElementById('copyBtnText');
+      const btnIcon = document.getElementById('copyBtnIcon');
+      const tempInput = document.createElement('input');
+      
+      tempInput.value = window.location.href;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      tempInput.setSelectionRange(0, 99999);
+
+      try {
+        document.execCommand('copy');
+        btnIcon.innerHTML = '&#10003;';
+        btnText.textContent = 'Link Copied';
+      } catch (err) {
+        btnText.textContent = 'Copy Failed';
+      }
+
+      document.body.removeChild(tempInput);
+
+      setTimeout(() => {
+        btnIcon.innerHTML = '&#128279;';
+        btnText.textContent = 'Share Toolbox';
+      }, 2200);
+    }
+  </script>
+</body>
+</html>

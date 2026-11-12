@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verification Toolbox — BCC Basic Needs Center</title>
   <meta name="description" content="Independent verification portals and anti-fraud triage hub for Berkeley City College students.">
+  <meta name="apple-mobile-web-app-title" content="BCC Scam Check">
+  <meta name="application-name" content="BCC Scam Check">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Inline SVG Favicon & Dynamic iOS/Android Home Screen Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231E293B'/%3E%3Cpath d='M50 18L24 29.5V48C24 65.2 35.1 81.2 50 86C64.9 81.2 76 65.2 76 48V29.5L50 18Z' fill='%23FFFFFF'/%3E%3Cpath d='M44.5 61.5L34.5 51.5L38.5 47.5L44.5 53.5L61.5 36.5L65.5 40.5L44.5 61.5Z' fill='%231E293B'/%3E%3C/svg%3E">
+  <link id="apple-touch-icon" rel="apple-touch-icon" sizes="180x180" href="">
+  <link id="shortcut-icon" rel="icon" type="image/png" sizes="192x192" href="">
   
   <!-- Load Inter Font for Clean Editorial Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,6 +85,17 @@
       transform: translate(2px, -2px);
       color: #111111;
     }
+
+    /* Smooth slide-up prompt animation */
+    .save-prompt {
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease;
+    }
+
+    .save-prompt.is-hidden {
+      transform: translateY(calc(100% + 24px));
+      opacity: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-[#111111] selection:text-[#FAF9F6]">
@@ -87,7 +107,7 @@
     <header class="mb-10 sm:mb-12">
       <!-- Top Identity Pill Badge -->
       <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white border border-hairline text-[11px] font-semibold tracking-[0.08em] uppercase text-muted mb-6 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-        BCC BASIC NEEDS CENTER &bull; DIGITAL SAFETY HUB
+        BCC BASIC NEEDS CENTER
       </div>
 
       <!-- Crisp Page Title -->
@@ -329,16 +349,22 @@
     </aside>
 
     <!-- Minimalist Editorial Footer -->
-    <footer class="pt-6 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-subtle">
-      <p class="leading-relaxed">
-        Vol. 1: Student Consumer Protection Series &bull; Built for Berkeley City College Students
-      </p>
-      
+    <footer class="pt-6 border-t border-hairline flex flex-wrap items-center justify-end gap-2 text-xs text-subtle">
+      <button
+        id="reopenSavePromptBtn"
+        type="button"
+        onclick="openSavePrompt()"
+        class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-hairline text-ink font-medium hover:border-ink transition-colors cursor-pointer"
+      >
+        <span>&#128204;</span>
+        <span>Save to Home Screen</span>
+      </button>
+
       <button
         id="copyLinkBtn"
         type="button"
         onclick="copyPageUrl()"
-        class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-hairline text-ink font-medium hover:border-ink transition-colors shrink-0 cursor-pointer"
+        class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-hairline text-ink font-medium hover:border-ink transition-colors cursor-pointer"
       >
         <span id="copyBtnIcon">&#128279;</span>
         <span id="copyBtnText">Share Toolbox</span>
@@ -347,8 +373,161 @@
 
   </main>
 
-  <!-- Lightweight Copy-to-Clipboard Script (Iframe & Mobile Safe) -->
+  <!-- Polite Floating Save / Bookmark Prompt Card -->
+  <div
+    id="savePromptCard"
+    role="region"
+    aria-label="Save Toolbox Tip"
+    class="save-prompt is-hidden fixed bottom-3 left-3 right-3 sm:left-auto sm:right-6 sm:bottom-6 sm:w-[400px] z-50"
+  >
+    <div class="bg-white border border-ink/20 rounded-[22px] p-4 sm:p-5 shadow-[0_16px_40px_-10px_rgba(17,17,17,0.16)]">
+      <!-- Top Row: Title & Close Button -->
+      <div class="flex items-start justify-between gap-3 mb-2.5">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-sageBg border border-sageBorder text-xs" aria-hidden="true">
+            &#128204;
+          </span>
+          <h3 class="text-[14px] font-semibold text-ink tracking-[-0.01em] leading-snug">
+            Find this toolbox helpful? Save it for quick access.
+          </h3>
+        </div>
+        <button
+          type="button"
+          onclick="dismissSavePrompt()"
+          aria-label="Close save tip"
+          class="w-7 h-7 -mt-1 -mr-1 rounded-full flex items-center justify-center text-subtle hover:text-ink hover:bg-[#FAF9F6] transition-colors shrink-0 cursor-pointer text-base leading-none"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Browser Instructions -->
+      <div class="space-y-2 text-[12.5px] text-muted leading-[1.55] bg-[#FAF9F6] border border-hairline rounded-[14px] p-3.5 mb-3">
+        <p>
+          <strong class="text-ink font-semibold">Safari (iOS):</strong> Tap the Share button, then select &ldquo;Add to Home Screen&rdquo;.
+        </p>
+        <p>
+          <strong class="text-ink font-semibold">Chrome (Mobile):</strong> Open the browser menu (or Share menu), then select &ldquo;Add to Home Screen&rdquo;.
+        </p>
+        <p>
+          <strong class="text-ink font-semibold">Edge / Firefox (Mobile):</strong> Open the browser menu and select &ldquo;Add to Phone&rdquo; or &ldquo;Add to Home Screen&rdquo;.
+        </p>
+        <p>
+          <strong class="text-ink font-semibold">Desktop Browsers:</strong> Bookmark this page (Ctrl+D or Cmd+D) or save it to your bookmarks bar for quick access.
+        </p>
+      </div>
+
+      <!-- Bottom Row: Polite Dismiss -->
+      <div class="flex items-center justify-end">
+        <button
+          type="button"
+          onclick="dismissSavePrompt()"
+          class="px-3.5 py-1.5 rounded-full bg-ink text-[#FAF9F6] text-[12px] font-medium hover:bg-ink/85 transition-colors cursor-pointer"
+        >
+          Got it
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightweight Copy-to-Clipboard & Save Prompt Script -->
   <script>
+    // Generate crisp 180x180 PNG icon for iOS "Add to Home Screen" & Android shortcuts
+    (function generateCustomAppIcons() {
+      try {
+        const size = 180;
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        // Deep Navy Background (#1E293B)
+        ctx.fillStyle = '#1E293B';
+        ctx.fillRect(0, 0, size, size);
+
+        // Subtle inner border highlight
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(2, 2, size - 4, size - 4);
+
+        // Crisp White Shield Emblem
+        ctx.save();
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.moveTo(90, 26);
+        ctx.lineTo(138, 46);
+        ctx.lineTo(138, 82);
+        ctx.bezierCurveTo(138, 114, 117.5, 138, 90, 147);
+        ctx.bezierCurveTo(62.5, 138, 42, 114, 42, 82);
+        ctx.lineTo(42, 46);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+
+        // Emerald/Sage Checkmark Inside Shield
+        ctx.save();
+        ctx.strokeStyle = '#15803D';
+        ctx.lineWidth = 10;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        ctx.moveTo(69, 86);
+        ctx.lineTo(84, 101);
+        ctx.lineTo(113, 70);
+        ctx.stroke();
+        ctx.restore();
+
+        // Small Crisp "BCC" Label at Bottom
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        ctx.font = '700 15px -apple-system, BlinkMacSystemFont, "Inter", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('BCC', 90, 168);
+
+        const pngDataUrl = canvas.toDataURL('image/png');
+        const appleIconLink = document.getElementById('apple-touch-icon');
+        const shortcutIconLink = document.getElementById('shortcut-icon');
+        if (appleIconLink) appleIconLink.href = pngDataUrl;
+        if (shortcutIconLink) shortcutIconLink.href = pngDataUrl;
+      } catch (e) {
+        // Fallback safely if canvas is restricted
+      }
+    })();
+
+    const SAVE_PROMPT_STORAGE_KEY = 'bcc_toolbox_save_prompt_dismissed_v1';
+
+    function openSavePrompt() {
+      const card = document.getElementById('savePromptCard');
+      if (card) {
+        card.classList.remove('is-hidden');
+      }
+    }
+
+    function dismissSavePrompt() {
+      const card = document.getElementById('savePromptCard');
+      if (card) {
+        card.classList.add('is-hidden');
+      }
+      try {
+        localStorage.setItem(SAVE_PROMPT_STORAGE_KEY, 'true');
+      } catch (e) {
+        // Ignore storage restrictions in private browsing modes
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      let dismissed = false;
+      try {
+        dismissed = localStorage.getItem(SAVE_PROMPT_STORAGE_KEY) === 'true';
+      } catch (e) {
+        dismissed = false;
+      }
+
+      if (!dismissed) {
+        setTimeout(openSavePrompt, 1200);
+      }
+    });
+
     function copyPageUrl() {
       const btnText = document.getElementById('copyBtnText');
       const btnIcon = document.getElementById('copyBtnIcon');
